@@ -1,0 +1,36 @@
+package TimeZone;
+
+/**
+ *
+ * @author Harshitha Shetty
+ */import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Scanner;
+public class WorldClock {
+    
+//Approach 1 using java builtIn libraries
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get input from the user
+        System.out.print("Enter a country name: ");
+        String countryName = scanner.nextLine();
+
+        // Try to get the time zone for the given country
+        try {
+            ZoneId zoneId = ZoneId.of(countryName);
+            ZonedDateTime currentTime = ZonedDateTime.now(zoneId);
+
+            // Display the current time in the specified country
+            System.out.println("Current time in " + countryName + ": " + currentTime);
+        } catch (Exception e) {
+            // Handle invalid input or unsupported time zone
+            System.out.println("Invalid country name or unsupported time zone: " + e.getMessage());
+        } finally {
+            // Close the scanner
+            scanner.close();
+        }
+    }
+}
